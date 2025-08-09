@@ -1,4 +1,4 @@
-// app.js - Advanced frontend with real Aptos integration
+
 import { Aptos, AptosConfig, Network } from "@aptos-labs/ts-sdk";
 
 class SlotMachineApp {
@@ -6,7 +6,7 @@ class SlotMachineApp {
         this.aptos = new Aptos(new AptosConfig({ network: Network.TESTNET }));
         this.wallet = null;
         this.userAddress = "";
-        this.contractAddress = "YOUR_DEPLOYED_CONTRACT_ADDRESS"; // Replace this
+        this.contractAddress = "8717ea23e50c23a9eacf97946663825ceaeafabba45f9c025cdf4f9e0766a5e0"; 
     }
 
     async connectWallet() {
@@ -33,7 +33,7 @@ class SlotMachineApp {
             const transaction = {
                 type: "entry_function_payload",
                 function: `${this.contractAddress}::SlotMachine::initialize_slot_machine`,
-                arguments: [100000000], // 1 APT in octas (1 APT = 100,000,000 octas)
+                arguments: [100000000], 
                 type_arguments: []
             };
 
@@ -67,7 +67,7 @@ class SlotMachineApp {
     }
 
     updateUI() {
-        // Update UI elements based on wallet connection
+    
         document.getElementById('connectBtn').textContent = 'Connected ✓';
         document.getElementById('connectBtn').disabled = true;
         document.getElementById('initBtn').disabled = false;
@@ -76,4 +76,5 @@ class SlotMachineApp {
 
 // Initialize app
 const app = new SlotMachineApp();
+
 window.app = app;
