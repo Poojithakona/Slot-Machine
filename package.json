@@ -1,0 +1,12 @@
+{
+  "name": "slot-machine-frontend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "live-server --port=3000",
+    "dev": "live-server --port=3000 --watch=."
+  },
+  "dependencies": {
+    "@aptos-labs/ts-sdk": "^1.0.0"
+  }
+}
