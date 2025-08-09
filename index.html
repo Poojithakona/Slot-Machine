@@ -199,15 +199,15 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js"></script>
     <script>
-        // Contract configuration
-        const CONTRACT_ADDRESS = "8717ea23e50c23a9eacf97946663825ceaeafabba45f9c025cdf4f9e0766a5e0"; // Replace with your actual contract address
+        
+        const CONTRACT_ADDRESS = "8717ea23e50c23a9eacf97946663825ceaeafabba45f9c025cdf4f9e0766a5e0"; 
         const MODULE_NAME = "SlotMachine";
         
         let walletConnected = false;
         let userAddress = "";
         let aptosWallet = null;
 
-        // Check if wallet is available
+
         async function checkWallet() {
             if (typeof window.aptos !== 'undefined') {
                 aptosWallet = window.aptos;
@@ -216,7 +216,7 @@
             return false;
         }
 
-        // Connect to Aptos wallet
+    
         async function connectWallet() {
             try {
                 if (!(await checkWallet())) {
@@ -239,12 +239,11 @@
             }
         }
 
-        // Update wallet status display
+        
         async function updateWalletStatus() {
             if (!walletConnected) return;
             
             try {
-                // Get wallet balance (simplified)
                 const balance = await getAccountBalance(userAddress);
                 document.getElementById('walletStatus').innerHTML = `
                     <p>Wallet: ${userAddress.slice(0, 6)}...${userAddress.slice(-4)}</p>
@@ -255,13 +254,13 @@
             }
         }
 
-        // Get account balance (simplified - in real app you'd use Aptos SDK)
+        
         async function getAccountBalance(address) {
-            // This is a placeholder - in a real app you'd query the Aptos node
+            
             return "Loading...";
         }
 
-        // Initialize slot machine
+        
         async function initializeSlotMachine() {
             if (!walletConnected) {
                 alert("Please connect your wallet first");
@@ -269,8 +268,7 @@
             }
 
             try {
-                // In a real implementation, you'd call the smart contract
-                // This is a simulation for demo purposes
+                
                 showMessage("Slot machine initialized successfully! 🎉", "win");
                 document.getElementById('initBtn').disabled = true;
                 document.getElementById('spinBtn').disabled = false;
@@ -282,7 +280,7 @@
             }
         }
 
-        // Spin the slot machine
+        
         async function spinSlotMachine() {
             if (!walletConnected) {
                 alert("Please connect your wallet first");
@@ -293,26 +291,26 @@
                 document.getElementById('spinBtn').disabled = true;
                 showMessage("Spinning... 🎰", "");
                 
-                // Animate slots
+                
                 animateSlots();
                 
-                // Simulate delay for spinning animation
+                
                 setTimeout(() => {
-                    // Generate random numbers (0-9)
+                    
                     const num1 = Math.floor(Math.random() * 10);
                     const num2 = Math.floor(Math.random() * 10);
                     const num3 = Math.floor(Math.random() * 10);
                     
-                    // Display results
+                    
                     document.getElementById('slot1').textContent = num1;
                     document.getElementById('slot2').textContent = num2;
                     document.getElementById('slot3').textContent = num3;
                     
-                    // Calculate winnings
+                    
                     const result = calculateWinnings(num1, num2, num3);
                     displayResult(result, num1, num2, num3);
                     
-                    // Update machine info
+                    
                     updateSlotMachineInfo();
                     
                     document.getElementById('spinBtn').disabled = false;
@@ -325,7 +323,7 @@
             }
         }
 
-        // Animate slot spinning
+        
         function animateSlots() {
             const slots = ['slot1', 'slot2', 'slot3'];
             slots.forEach(slotId => {
@@ -337,28 +335,28 @@
             });
         }
 
-        // Calculate winnings based on numbers
+    
         function calculateWinnings(num1, num2, num3) {
-            // Jackpot: All three 7s
+            
             if (num1 === 7 && num2 === 7 && num3 === 7) {
                 return { amount: "JACKPOT", type: "jackpot", multiplier: "JACKPOT!" };
             }
             
-            // Three of a kind (except 7s)
+        
             if (num1 === num2 && num2 === num3 && num1 !== 7) {
                 return { amount: 10, type: "win", multiplier: "10x" };
             }
             
-            // Two of a kind
+            
             if (num1 === num2 || num2 === num3 || num1 === num3) {
                 return { amount: 2, type: "win", multiplier: "2x" };
             }
             
-            // No win
+            
             return { amount: 0, type: "lose", multiplier: "0x" };
         }
 
-        // Display spin result
+        
         function displayResult(result, num1, num2, num3) {
             const resultDiv = document.getElementById('resultMessage');
             
@@ -374,16 +372,16 @@
             }
         }
 
-        // Show general messages
+    
         function showMessage(message, type) {
             const resultDiv = document.getElementById('resultMessage');
             resultDiv.className = `result-message ${type}`;
             resultDiv.textContent = message;
         }
 
-        // Update slot machine info (simulated)
+        
         function updateSlotMachineInfo() {
-            // In a real app, you'd query the smart contract for these values
+            
             const currentSpins = parseInt(document.getElementById('totalSpins').textContent) + 1;
             const currentJackpot = parseFloat(document.getElementById('jackpotAmount').textContent) + 0.1;
             
@@ -391,11 +389,12 @@
             document.getElementById('jackpotAmount').textContent = currentJackpot.toFixed(1) + ' APT';
         }
 
-        // Initialize on page load
+        
         window.addEventListener('load', async () => {
             showMessage("Welcome to the Slot Machine! Connect your wallet to start playing.", "");
         });
     </script>
 </head>
 </body>
+
 </html>
