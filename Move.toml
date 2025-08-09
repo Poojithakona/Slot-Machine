@@ -1,0 +1,15 @@
+[package]
+name = "SlotMachine"
+version = "1.0.0"
+authors = []
+
+[addresses]
+var="0x8717ea23e50c23a9eacf97946663825ceaeafabba45f9c025cdf4f9e0766a5e0"
+[dev-addresses]
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-framework.git"
+rev = "mainnet"
+subdir = "aptos-framework"
+
+[dev-dependencies]
